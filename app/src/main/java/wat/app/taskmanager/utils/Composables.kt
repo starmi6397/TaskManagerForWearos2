@@ -20,24 +20,33 @@ import bakuen.wear.components.wear.verticalRotaryScroll
 import wat.app.taskmanager.screens.about.AboutScreen
 import wat.app.taskmanager.screens.main.InfoText
 
+// 定义一个可组合函数，用于创建一个垂直滚动的列
 @Composable
 inline fun ScreenColumn(center: Boolean = false, bg: Color? = null, content: @Composable ColumnScope.()->Unit) {
+    // 创建一个列，填充整个屏幕
     Column(
         modifier = Modifier
             .fillMaxSize()
+            // 如果bg不为空，则设置背景颜色
             .calculate { if (bg!=null) Modifier.background(color = bg) else null }
+            // 设置水平方向的填充
             .padding(horizontal = Const.scrPaddingHor)
+            // 如果center为true，则将内容居中
             .condition(center, Modifier.wrapContentSize(Alignment.Center))
+            // 添加垂直滚动
             .verticalRotaryScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Const.colArrangement,
+        // 垂直方向使用Const.colArrangement布局
         content = content
     )
 }
 
 @Composable
 inline fun ColumnScope.Title(content: @Composable ColumnScope.()->Unit) {
+// 定义一个可组合函数，用于创建一个标题
     Space(size = Const.scrPaddingTop)
     content()
+    // 添加一个垂直方向的间距
     Space(size = 8.dp)
-}
+}    // 添加一个垂直方向的间距

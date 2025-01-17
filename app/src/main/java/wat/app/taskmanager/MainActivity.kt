@@ -14,10 +14,12 @@ import wat.app.taskmanager.screens.main.MainViewModel
 import wat.app.taskmanager.shizuku.ShizukuTools
 import wat.app.taskmanager.utils.Update
 
+// 声明一个全局的Context变量，用于在整个应用程序中共享
 lateinit var appContext: Context
     private set
 class MainActivity : ComponentActivity() {
 
+    // 在Activity创建时调用
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appContext = applicationContext

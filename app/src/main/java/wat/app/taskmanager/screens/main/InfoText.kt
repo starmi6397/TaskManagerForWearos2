@@ -22,6 +22,7 @@ import kotlin.math.roundToInt
 
 @Composable
 fun InfoText(onClick: ()->Unit = {}) {
+    // 使用produceState函数来产生一个可观察的状态，用于显示当前时间
     val time by produceState(initialValue = "") {
         do {
             value =
@@ -31,8 +32,10 @@ fun InfoText(onClick: ()->Unit = {}) {
             delay(1_000)
         } while (true)
     }
+    // 获取当前上下文
     val context = LocalContext.current
     var batteryReceiver: BroadcastReceiver? = null //TODO 不优雅
+    // 使用produceState函数来产生一个可观察的状态，用于显示当前电量
     val battery by produceState(initialValue = 0) {
         batteryReceiver = object : BroadcastReceiver() {
             override fun onReceive(p0: Context?, intent: Intent) {
@@ -43,6 +46,7 @@ fun InfoText(onClick: ()->Unit = {}) {
         }
         context.registerReceiver(batteryReceiver, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
     }
+    // 使用DisposableEffect函数来在组件销毁时取消注册广播接收器
     DisposableEffect(Unit) {
         onDispose {
             context.unregisterReceiver(batteryReceiver)

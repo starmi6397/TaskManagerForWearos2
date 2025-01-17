@@ -13,11 +13,14 @@ import wat.app.taskmanager.shizuku.ShizukuTools
 import wat.app.taskmanager.appContext
 import wat.app.taskmanager.prefs.Settings
 
+// 定义主界面的ViewModel
 class MainViewModel : SimpleViewModel<MainEvent>() {
 
+    // 定义主界面的状态
     var state by mutableStateOf(MainState(shizuku = ShizukuTools.state))
         private set
 
+    // 更新应用列表
     fun updateAppList() {
         ShizukuTools.requireBinder {
             val pm = appContext.packageManager
@@ -42,7 +45,9 @@ class MainViewModel : SimpleViewModel<MainEvent>() {
         }
     }
 
+    // 定义已结束的应用集合
     private val killedApps = mutableSetOf<String>()
+    // 处理主界面的事件
     override fun dispatch(event: MainEvent) {
         when (event) {
             is MainEvent.Open -> appContext.launchApp(event.packageName)

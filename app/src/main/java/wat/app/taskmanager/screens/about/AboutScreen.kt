@@ -15,8 +15,7 @@ fun AboutScreen() {
     ScreenColumn(center = true) {
         Text(text = "任务管理器 TaskManager")
         Text(text = "版本：${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
-        Text(text = "By java30433")
-        Text(text = "交流Q群: 1002991206")
+        Text(text = "By java30433&starmi")
         Text(text = "以 GPLv3 协议开源")
         SurfaceButton(modifier = Modifier.clickable { Navigator.forward { HideAppListScreen() } }) {
             Text(text = "所有被隐藏应用的列表")

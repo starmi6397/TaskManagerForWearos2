@@ -19,7 +19,9 @@ import bakuen.wear.components.condition
 import bakuen.wear.components.wear.verticalRotaryScroll
 import wat.app.taskmanager.BuildConfig
 
+// 定义常量类
 object Const {
+    // 忽略的应用程序集合
     val ignoreApps = setOf(
         BuildConfig.APPLICATION_ID,
         "moe.shizuku.privileged.api",
@@ -34,7 +36,10 @@ object Const {
         "con.google.android.apps.handwriting.ime",
         "system"
     )
+    // 水平方向的屏幕内边距
     val scrPaddingHor = 9.dp
+    // 顶部屏幕内边距
     val scrPaddingTop = 10.dp
+    // 列布局的排列方式
     val colArrangement = Arrangement.spacedBy(2.dp)
 }

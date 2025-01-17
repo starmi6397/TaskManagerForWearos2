@@ -54,7 +54,7 @@ private fun MainScreenUI(state: MainState, dispatch: (MainEvent)->Unit) {
                 key(it.packageName) {
                     // 渲染可滑动删除的应用单元格
                     SwipeToDismiss(
-                        velocity = 40.dp// 设置滑动速度
+                        velocity = 40.dp, // 设置滑动速度
                         reverse = true, // 设置滑动方向为反向
                         onDismiss = { dispatch(MainEvent.Kill(it.packageName)) }) { // 设置滑动后触发的操作，即关闭应用
                         // 渲染应用单元格

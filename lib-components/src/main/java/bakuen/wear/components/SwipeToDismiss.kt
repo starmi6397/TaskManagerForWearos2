@@ -39,17 +39,18 @@ fun SwipeToDismiss(
     val state = remember {
         AnchoredDraggableState(
             initialValue = DragAnchors.Normal,
-            positionalThreshold = { totalDistance ->
-                totalDistance * 0.5f
+            positionalThreshold = { totalDistance: Float ->
+                totalDistance * 1.0f
             },
             velocityThreshold = {
                 with(density) {
                     velocity.toPx()
                 }
             },
+
             snapAnimationSpec = tween(),
             decayAnimationSpec = decay,
-            anchors = DraggableAnchors {
+            anchors = DraggableAnchors<DragAnchors> {
                 DragAnchors.Normal at 0f
                 DragAnchors.Dismiss at maxOffset
             }

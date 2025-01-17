@@ -1,4 +1,4 @@
-apply("./signing.gradle.kts")
+//apply("./signing.gradle.kts")
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)

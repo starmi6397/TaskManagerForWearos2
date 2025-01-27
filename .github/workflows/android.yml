@@ -1,4 +1,4 @@
-name: Android CI
+name: Build and Test Android Project
 
 on:
   push:
@@ -8,19 +8,33 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: set up JDK 17
-      uses: actions/setup-java@v4
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
       with:
         java-version: '17'
-        distribution: 'zulu'
-        cache: gradle
+        distribution: 'adopt'
+
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v2
+      with:
+        api-level: 30
+        build-tools-version: 30.0.3
+        emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-snapshot-load -no-snapshot-save -no-boot-anim
+        emulator-version: 30.6.5-7524388
+        tag: latest
 
     - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      run: chmod +x ./gradlew
+
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew assembleDebug
+
+    - name: Run tests
+      run: ./gradlew test
+      
